@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.left {
+    background-color: #F18701;
+    display: grid;
+    place-items: center;
+    position: relative;
+}
+
+.left-container {
+    position: absolute;
+    z-index: 1;
+    text-align: center;
+    color: white;
+    padding: 25px;
+}
+
+.main-heading {
+    margin-bottom: 10px;
+    font-family: 'Dancing Script', cursive;
+    font-size: 4em;
+}
+
+.underline {
+    text-decoration: none; 
+    position: relative; 
+}  
+
+.underline:after {
+    position: absolute;
+    content: '';
+    height: 3px;
+    bottom: -10px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    width: 50%;
+    background: white;
+}
+
+.tagline {
+    margin-top: 20px;
+}
+
+.right {
+    background-color: white;
+    display: grid;
+    place-items: center;
+    position: relative;
+}
+
+.right-container {
+    left: -5vw;;
+    position: relative;
+    padding: 10px;
+}
+
+.bg-responsive {
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    left: -4vw;
+    bottom: 0;
+    background-color: #F18701;
+    width: 50%;
+    height: 100vh;
+}
+
+.calculator {
+    width: 45vw;
+    max-width: 30vw;
+    height: 55vw;
+    max-height: 40vw;
+    background-color: antiquewhite;
+
+    display: grid;
+    grid-template-areas:
+                "screen screen screen screen"
+                "clear-btn clear-btn backspace divide"
+                "number number number multiply"
+                "number number number minus"
+                "number number number plus"
+                "decimel 0 equals equals";
+    grid-gap: 10px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1.5fr repeat(5, 1fr);
+}
+
+.screen {
+    padding: 10px 20px;
+    border-radius: 5px;
+    grid-area: screen;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: black;
+}
+
+#displayValue {
+    color: gray;
+    font-size: 1rem;
+    overflow: hidden;
+    text-overflow: clip;
+    max-width: 45vw;
+}
+
+#result {
+    color: white;
+    font-size: 2.5rem;
+}
+
+.operator {
+    background-color: #F18701;
+    color: white;
+}
+
+.number {
+    background-color: lightgray;
+    color: white;
+}
+
+.number, .equals, .operator {
+    display: grid;
+    place-items: center;
+}
+
+.backspace {
+    grid-area: backspace;
+    background-color: rgb(230, 57, 57);
+    color: white;
+}
+
+.clear {
+    grid-area: clear-btn;
+    background-color: red;
+    color: white;
+}
+
+.equals {
+    grid-area: equals;
+    color: white;
+    background-color: blue;
+}
+
+@media screen and (max-width: 600px) {
+    .container {
+        grid-template-columns: none;
+        grid-template-rows: 1fr 1fr;
+    }
+
+    .main-heading {
+        font-size: 3em;
+    }
+
+    .bg-responsive {
+        left: 0;
+        height: 50%;
+        width: 100vw;
+    }
+
+    .right-container {
+        left: 0;
+    }
+}
