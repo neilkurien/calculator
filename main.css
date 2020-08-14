@@ -97,6 +97,7 @@
     grid-gap: 10px;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: 1.5fr repeat(5, 1fr);
+    font-size: 2rem;
 }
 
 .screen {
@@ -109,7 +110,7 @@
     background-color: black;
 }
 
-#displayValue {
+#history {
     color: gray;
     font-size: 1rem;
     overflow: hidden;
@@ -137,22 +138,36 @@
     place-items: center;
 }
 
-.backspace {
+#backspace {
     grid-area: backspace;
     background-color: rgb(230, 57, 57);
     color: white;
 }
 
-.clear {
+#clear {
     grid-area: clear-btn;
     background-color: red;
     color: white;
 }
 
-.equals {
+#equals {
     grid-area: equals;
     color: white;
     background-color: blue;
+}
+
+button {
+    border-radius: 5px;
+    border: none;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+button:active, button:focus {
+    border: none;
+    outline: none;
 }
 
 @media screen and (max-width: 600px) {

@@ -1,43 +1,66 @@
-function add(num1, num2) {
-    return num1+num2;
+let result=0;
+let num = 0, num1, num2;
+let operator = '';
+let operatorSign = '';
+let displayValue = '';
+const history = document.getElementById('history');
+const resultValue = document.getElementById('result');
+updateScreen();
+
+//Arrow functions for operations
+const add = (num1, num2) => result = num1+num2;
+const subtract = (num1, num2) => result = num1-num2;
+const multiply = (num1, num2) => result = num1*num2;
+const divide = (num1, num2) => result = num1/num2;
+
+//Checks operator, operates and returns result
+const operate = ((num1, operator, num2) => {
+    operator == "+" ? add(num1, num2) :
+    operator == "-" ? subtract(num1, num2) :
+    operator == "×" ? multiply(num1, num2) :
+    operator == "÷" ? divide(num1, num2) : result = "Error";
+});
+
+function updateScreen() {
+    history.innerHTML = displayValue;
+    resultValue.innerHTML = result;
 }
 
-//array.reduce((total, number) => total+= number);
+function inputCheck(e) {
 
-function subtract(num1, num2) {
-    return num1-num2;
-}
-
-function multiply(num1, num2) {
-    return num1*num2;
-}
-
-function divide(num1, num2) {
-    return num1/num2;
-}
-
-function operate(array) {
-    for(i=0; i<array.length; i++) {
-        if (array[i]=='+') {
-            return sum(array[i-1], array[i+1]);
-        }
-        else if (array[i]=='-') {
-            return subtract(array[i-1], array[i+1]);
-        }
-        else if (array[i]=='*' || array[i]=='x') {
-            return multiply(array[i-1], array[i+1]);
-        }
-        else if (array[i]=='/') {
-            return divide(array[i-1], array[i+1]);
-        }
-    return array[i];
+    if (this.id == "+" || this.id == "-" || this.id == "×" || this.id == "÷") {
+        operator = this.id;
+        num1 = Number(num);
+        num=0;
+        displayValue += this.id;
+        console.log("Num1: " + num1);
     }
+    else if (this.id == "equals") {
+        num2 = Number(num);
+        operate(num1, operator, num2);
+        updateScreen();
+    }
+    else if (this.id == "backspace") {
+        num = num.slice(0, num.length-1);
+        displayValue = displayValue.slice(0, displayValue.length-1);
+        updateScreen();
+    }
+    else if (this.id == "clear") {
+        result = 0;
+        num = 0;
+        num1 = 0;
+        num2 = 0;
+        displayValue = '';
+        updateScreen();
+    }
+    else {
+        num += this.id;
+        displayValue += this.id;
+        console.log(num);
+    }
+    updateScreen();
 }
 
-function updateDisplay() {
-
-}
-
-displayValue = [5*7+6/7+6];
-
-console.log(operate(displayValue));
+//Add event listeners, returns button value
+const buttons = document.querySelectorAll('button');
+buttons.forEach(button => button.addEventListener('click', inputCheck));
