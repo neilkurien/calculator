@@ -35,6 +35,11 @@ function inputCheck(e) {
         displayValue += this.id;
         console.log("Num1: " + num1);
     }
+    else if (this.id == ".") {
+        num += this.id;
+        displayValue += this.id;
+        updateScreen();
+    }
     else if (this.id == "equals") {
         num2 = Number(num);
         operate(num1, operator, num2);
