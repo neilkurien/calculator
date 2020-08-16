@@ -3,6 +3,7 @@ let num = 0, num1, num2;
 let operator = '';
 let operatorSign = '';
 let displayValue = '';
+let tempDisplayValue = '';
 const history = document.getElementById('history');
 const resultValue = document.getElementById('result');
 updateScreen();
@@ -18,7 +19,8 @@ const operate = ((num1, operator, num2) => {
     operator == "+" ? add(num1, num2) :
     operator == "-" ? subtract(num1, num2) :
     operator == "×" ? multiply(num1, num2) :
-    operator == "÷" ? divide(num1, num2) : result = "Error";
+    operator == "÷" ? divide(num1, num2) : 
+    operator == "" ? result = Number(num) : result = "Error";
 });
 
 function updateScreen() {
@@ -29,11 +31,18 @@ function updateScreen() {
 function inputCheck(e) {
 
     if (this.id == "+" || this.id == "-" || this.id == "×" || this.id == "÷") {
+        if (result !== 0) {
+            displayValue = result;
+        }
+        if (displayValue == "nice") {
+            displayValue = '58008';
+            updateScreen();
+        }
         operator = this.id;
         num1 = Number(num);
         num=0;
         displayValue += this.id;
-        console.log("Num1: " + num1);
+        updateScreen();
     }
     else if (this.id == ".") {
         num += this.id;
@@ -43,7 +52,15 @@ function inputCheck(e) {
     else if (this.id == "equals") {
         num2 = Number(num);
         operate(num1, operator, num2);
-        updateScreen();
+        console.log(result);
+        if (result == 58008) {
+            displayValue = "nice";
+            updateScreen();
+        }
+        else {
+            updateScreen();
+            num = result;
+        }
     }
     else if (this.id == "backspace") {
         num = num.slice(0, num.length-1);
@@ -61,7 +78,7 @@ function inputCheck(e) {
     else {
         num += this.id;
         displayValue += this.id;
-        console.log(num);
+        updateScreen();
     }
     updateScreen();
 }
