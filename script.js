@@ -20,10 +20,13 @@ const operate = ((num1, operator, num2) => {
     operator == "-" ? subtract(num1, num2) :
     operator == "×" ? multiply(num1, num2) :
     operator == "÷" ? divide(num1, num2) : 
-    operator == "" ? result = Number(num) : result = "Error";
+    operator == "" ? result = Number(num) : result = "ERROR";
 });
 
 function updateScreen() {
+    if (isNaN(result)) {
+        result = "ERROR";
+    }
     history.innerHTML = displayValue;
     resultValue.innerHTML = result;
 }
