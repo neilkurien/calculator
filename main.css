@@ -71,7 +71,7 @@
 }
 
 .right-container {
-    left: -5vw;;
+    left: -5vw;
     display: grid;
     place-items: center;
     position: relative;
@@ -130,6 +130,7 @@
     overflow: hidden;
     text-overflow: clip;
     justify-self: start;
+    width: 100%;
 }
 
 #result {
@@ -298,6 +299,22 @@ button:active, button:focus {
     outline: none;
 }
 
+button:active {
+    top: 6px;
+    right: -6px;
+    box-shadow: none;
+}
+
+button:active::before {
+    bottom: 1px;
+    left: 1px;
+}
+  
+button:active::after {
+    top: 1px;
+    right: 1px;
+}
+
 @media screen and (max-width: 600px) {
     .container {
         grid-template-columns: none;
@@ -315,6 +332,23 @@ button:active, button:focus {
     }
 
     .right-container {
-        left: 0;
+        left: -1.5vw;
+        transform: scale(1.9);
+    }
+
+    #history {
+        font-size: 0.5em;
+    }
+
+    #result {
+        font-size: 1.7em;
+    }
+
+    .button-pad {
+        width: 60vw;
+        height: 60vw;
+        transform: skewX(-19deg) scale(0.35);
+        left: -8.3vw;
+        bottom: -12.3vw;
     }
 }
